@@ -207,4 +207,15 @@ extension WatchConnectivityService: WCSessionDelegate {
         connectivitySession.activate()
     }
 #endif
+
+#if os(visionOS)
+    public func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+
+    public func sessionDidDeactivate(_ session: WCSession) {
+        // If the person has more than one watch, and they switch,
+        // reactivate their session on the new device.
+        connectivitySession.activate()
+    }
+#endif
 }
